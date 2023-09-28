@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.7.5</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<groupId>com.cash</groupId>
+	<artifactId>cash-account-management</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>cash-account-management</name>
+
+	<description>SpringBoot project for cash account management</description>
+	<properties>
+		<java.version>11</java.version>
+		<jar.name>cash-account-management</jar.name>
+		<org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
+		<org.mapstruct.binding.version>0.2.0</org.mapstruct.binding.version>
+		<org.lombok.version>1.18.24</org.lombok.version>
+		<shared.global.version>0.0.1</shared.global.version>
+		<start-class>com.cash.cashaccountmanagement.Application</start-class>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.global</groupId>
+			<artifactId>shared-global-library</artifactId>
+			<version>${shared.global.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-client</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>sprint-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-yaml</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>0.2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${org.mapstruct.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<finalName>${jar.name}</finalName>
+
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>11</source>
+					<target>11</target>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>${org.mapstruct.version}</version>
+						</path>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${org.lombok.version}</version>
+						</path>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok-mapstruct-binding</artifactId>
+							<version>${org.mapstruct.binding.version}</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>generate-api</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.openapitools</groupId>
+						<artifactId>openapi-generator-maven-plugin</artifactId>
+						<version>5.4.0</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>generate</goal>
+								</goals>
+								<configuration>
+									<generatorName>spring</generatorName>
+									<addCompileSourceRoot>false</addCompileSourceRoot>
+									<skipOverwrite>false</skipOverwrite>
+									<inputSpec>
+										${project.basedir}/src/contract/resources/user-management.yml
+									</inputSpec>
+									<apiPackage>com.savemoney.usermanagement.api.v1</apiPackage>
+									<modelPackage>com.savemoney.usermanagement.model.v1</modelPackage>
+									<packageName>com.savemoney.usermanagement</packageName>
+									<generateApiDocumentation>false</generateApiDocumentation>
+									<generateModelDocumentation>false</generateModelDocumentation>
+									<output>${project.basedir}</output>
+									<generateSupportingFiles>true</generateSupportingFiles>
+									<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+									<configOptions>
+										<sourceFolder>src/contract/java</sourceFolder>
+										<dateLibrary>java8</dateLibrary>
+										<interfaceOnly>true</interfaceOnly>
+										<useBeanValidation>true</useBeanValidation>
+										<documentationProvider>none</documentationProvider>
+										<annotationLibrary>swagger2</annotationLibrary>
+										<openApiNullable>false</openApiNullable>
+										<skipDefaultInterface>true</skipDefaultInterface>
+									</configOptions>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

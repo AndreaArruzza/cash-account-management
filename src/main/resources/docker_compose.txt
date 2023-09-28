@@ -1,0 +1,28 @@
+services:
+  cash-account-management:
+    image: 'cashaccountmanagement:v1'
+    build:
+      context: .
+    container_name: cash-account-management
+    depends_on:
+      - postgres
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/cashAccount
+      - SPRING_DATASOURCE_USERNAME=andrew92
+      - SPRING_DATASOURCE_PASSWORD=Arrudb!92
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+          
+  postgres:
+    container_name: postgres-cashaccount
+    image: postgres:13.1-alpine
+    volumes:
+      - savemoney_volume:/var/lib/postgresql
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=andrew92
+      - POSTGRES_PASSWORD=Arrudb!92
+      - POSTGRES_DB=cashAccount
+
+volumes:
+    savemoney_volume:
