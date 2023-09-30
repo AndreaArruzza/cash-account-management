@@ -21,7 +21,7 @@
 		<org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
 		<org.mapstruct.binding.version>0.2.0</org.mapstruct.binding.version>
 		<org.lombok.version>1.18.24</org.lombok.version>
-		<shared.global.version>0.0.1</shared.global.version>
+		<shared.version>0.0.2</shared.version>
 		<start-class>com.cashaccountmanagement.Application</start-class>
 		<spring-cloud.version>2021.0.1</spring-cloud.version>
 	</properties>
@@ -41,9 +41,9 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>com.global</groupId>
-			<artifactId>shared-global-library</artifactId>
-			<version>${shared.global.version}</version>
+			<groupId>com</groupId>
+			<artifactId>shared-library</artifactId>
+			<version>${shared.version}</version>
 		</dependency>
 
 		<dependency>

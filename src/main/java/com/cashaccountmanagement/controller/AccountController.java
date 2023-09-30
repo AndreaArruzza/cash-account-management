@@ -1,11 +1,10 @@
 package com.cashaccountmanagement.controller;
 
-import com.cashaccountmanagement.mapper.AccountMapper;
 import com.cashaccountmanagement.account.api.v1.AccountApi;
 import com.cashaccountmanagement.account.model.v1.AccountResource;
 import com.cashaccountmanagement.account.model.v1.TransactionsResource;
+import com.cashaccountmanagement.mapper.AccountMapper;
 import com.cashaccountmanagement.service.AccountService;
-import com.cashaccountmanagement.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;

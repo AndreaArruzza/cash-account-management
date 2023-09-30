@@ -5,26 +5,34 @@
  */
 package com.cashaccountmanagement.client.fabrick.api.v1;
 
-import com.cashaccountmanagement.client.fabrick.model.v1.Account;
-import com.cashaccountmanagement.client.fabrick.model.v1.Transactions;
+import com.cashaccountmanagement.client.fabrick.model.v1.AccountResponse;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
-
+import com.cashaccountmanagement.client.fabrick.model.v1.Transactions;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T12:20:29.206163100+02:00[Europe/Berlin]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T19:46:08.386262800+02:00[Europe/Berlin]")
 @Validated
 @Tag(name = "account", description = "the account API")
 public interface AccountApi {
@@ -43,7 +51,7 @@ public interface AccountApi {
         operationId = "getAccount",
         summary = "get account",
         responses = {
-            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  Account.class))),
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  AccountResponse.class))),
             @ApiResponse(responseCode = "201", description = "Created"),
             @ApiResponse(responseCode = "401", description = "Unauthorized"),
             @ApiResponse(responseCode = "403", description = "Forbidden"),
@@ -55,7 +63,7 @@ public interface AccountApi {
         value = "/account/{accountId}",
         produces = { "application/json" }
     )
-    ResponseEntity<Account> getAccount(
+    ResponseEntity<AccountResponse> getAccount(
         @Parameter(name = "accountId", description = "", required = true, schema = @Schema(description = "")) @PathVariable("accountId") String accountId
     );
 

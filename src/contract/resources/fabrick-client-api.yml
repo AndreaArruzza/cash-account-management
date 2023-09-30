@@ -23,7 +23,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Account'
+                $ref: '#/components/schemas/AccountResponse'
         '201':
           description: Created
         '401':
@@ -113,7 +113,19 @@ paths:
 components:
   schemas:
 
-    Account:
+    AccountResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: OK
+        error:
+          type: array
+          items: { }
+        payload:
+          $ref: '#/components/schemas/AccountPayload'
+
+    AccountPayload:
       type: object
       properties:
         accountId:

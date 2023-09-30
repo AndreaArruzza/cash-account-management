@@ -1,24 +1,26 @@
 package com.cashaccountmanagement.client.fabrick.model.v1;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import com.fasterxml.jackson.annotation.JsonCreator;
 import java.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
-
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
-
+import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
+import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * Account
+ * AccountPayload
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T12:20:29.206163100+02:00[Europe/Berlin]")
-public class Account   {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T19:46:08.386262800+02:00[Europe/Berlin]")
+public class AccountPayload   {
 
   @JsonProperty("accountId")
   private String accountId;
@@ -60,7 +62,7 @@ public class Account   {
   @JsonProperty("currency")
   private String currency;
 
-  public Account accountId(String accountId) {
+  public AccountPayload accountId(String accountId) {
     this.accountId = accountId;
     return this;
   }
@@ -79,7 +81,7 @@ public class Account   {
     this.accountId = accountId;
   }
 
-  public Account iban(String iban) {
+  public AccountPayload iban(String iban) {
     this.iban = iban;
     return this;
   }
@@ -98,7 +100,7 @@ public class Account   {
     this.iban = iban;
   }
 
-  public Account abiCode(String abiCode) {
+  public AccountPayload abiCode(String abiCode) {
     this.abiCode = abiCode;
     return this;
   }
@@ -117,7 +119,7 @@ public class Account   {
     this.abiCode = abiCode;
   }
 
-  public Account cabCode(String cabCode) {
+  public AccountPayload cabCode(String cabCode) {
     this.cabCode = cabCode;
     return this;
   }
@@ -136,7 +138,7 @@ public class Account   {
     this.cabCode = cabCode;
   }
 
-  public Account countryCode(String countryCode) {
+  public AccountPayload countryCode(String countryCode) {
     this.countryCode = countryCode;
     return this;
   }
@@ -155,7 +157,7 @@ public class Account   {
     this.countryCode = countryCode;
   }
 
-  public Account internationalCin(String internationalCin) {
+  public AccountPayload internationalCin(String internationalCin) {
     this.internationalCin = internationalCin;
     return this;
   }
@@ -174,7 +176,7 @@ public class Account   {
     this.internationalCin = internationalCin;
   }
 
-  public Account nationalCin(String nationalCin) {
+  public AccountPayload nationalCin(String nationalCin) {
     this.nationalCin = nationalCin;
     return this;
   }
@@ -193,7 +195,7 @@ public class Account   {
     this.nationalCin = nationalCin;
   }
 
-  public Account account(String account) {
+  public AccountPayload account(String account) {
     this.account = account;
     return this;
   }
@@ -212,7 +214,7 @@ public class Account   {
     this.account = account;
   }
 
-  public Account alias(String alias) {
+  public AccountPayload alias(String alias) {
     this.alias = alias;
     return this;
   }
@@ -231,7 +233,7 @@ public class Account   {
     this.alias = alias;
   }
 
-  public Account productName(String productName) {
+  public AccountPayload productName(String productName) {
     this.productName = productName;
     return this;
   }
@@ -250,7 +252,7 @@ public class Account   {
     this.productName = productName;
   }
 
-  public Account holderName(String holderName) {
+  public AccountPayload holderName(String holderName) {
     this.holderName = holderName;
     return this;
   }
@@ -269,7 +271,7 @@ public class Account   {
     this.holderName = holderName;
   }
 
-  public Account activatedDate(LocalDate activatedDate) {
+  public AccountPayload activatedDate(LocalDate activatedDate) {
     this.activatedDate = activatedDate;
     return this;
   }
@@ -288,7 +290,7 @@ public class Account   {
     this.activatedDate = activatedDate;
   }
 
-  public Account currency(String currency) {
+  public AccountPayload currency(String currency) {
     this.currency = currency;
     return this;
   }
@@ -315,20 +317,20 @@ public class Account   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Account account = (Account) o;
-    return Objects.equals(this.accountId, account.accountId) &&
-        Objects.equals(this.iban, account.iban) &&
-        Objects.equals(this.abiCode, account.abiCode) &&
-        Objects.equals(this.cabCode, account.cabCode) &&
-        Objects.equals(this.countryCode, account.countryCode) &&
-        Objects.equals(this.internationalCin, account.internationalCin) &&
-        Objects.equals(this.nationalCin, account.nationalCin) &&
-        Objects.equals(this.account, account.account) &&
-        Objects.equals(this.alias, account.alias) &&
-        Objects.equals(this.productName, account.productName) &&
-        Objects.equals(this.holderName, account.holderName) &&
-        Objects.equals(this.activatedDate, account.activatedDate) &&
-        Objects.equals(this.currency, account.currency);
+    AccountPayload accountPayload = (AccountPayload) o;
+    return Objects.equals(this.accountId, accountPayload.accountId) &&
+        Objects.equals(this.iban, accountPayload.iban) &&
+        Objects.equals(this.abiCode, accountPayload.abiCode) &&
+        Objects.equals(this.cabCode, accountPayload.cabCode) &&
+        Objects.equals(this.countryCode, accountPayload.countryCode) &&
+        Objects.equals(this.internationalCin, accountPayload.internationalCin) &&
+        Objects.equals(this.nationalCin, accountPayload.nationalCin) &&
+        Objects.equals(this.account, accountPayload.account) &&
+        Objects.equals(this.alias, accountPayload.alias) &&
+        Objects.equals(this.productName, accountPayload.productName) &&
+        Objects.equals(this.holderName, accountPayload.holderName) &&
+        Objects.equals(this.activatedDate, accountPayload.activatedDate) &&
+        Objects.equals(this.currency, accountPayload.currency);
   }
 
   @Override
@@ -339,7 +341,7 @@ public class Account   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Account {\n");
+    sb.append("class AccountPayload {\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    iban: ").append(toIndentedString(iban)).append("\n");
     sb.append("    abiCode: ").append(toIndentedString(abiCode)).append("\n");

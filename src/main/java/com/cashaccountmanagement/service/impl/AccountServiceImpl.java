@@ -2,7 +2,8 @@ package com.cashaccountmanagement.service.impl;
 
 
 import com.cashaccountmanagement.client.FabrickClient;
-import com.cashaccountmanagement.client.fabrick.model.v1.Account;
+import com.cashaccountmanagement.client.fabrick.model.v1.AccountPayload;
+import com.cashaccountmanagement.client.fabrick.model.v1.AccountResponse;
 import com.cashaccountmanagement.client.fabrick.model.v1.Transactions;
 import com.cashaccountmanagement.mapper.AccountMapper;
 import com.cashaccountmanagement.model.TransactionModel;
@@ -19,49 +20,55 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.format.DateTimeFormatter;
+import java.util.Optional;
+
 @Service
 public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private FabrickClient fabrickClient;
 
+    @Autowired
+    private AccountMapper accountMapper;
+
+    //TODO ONLY A CONFIGURATION
     @Value("${auth.auth-schema}")
     private String authSchema;
 
     @Value("${auth.api-key}")
-    private String apiKey;
+    private String  apiKey;
 
-    @Autowired
-    private AccountMapper accountMapper;
-
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public AccountResource getAccount(String accountId) {
         long start = System.currentTimeMillis();
         logger.info("call getAccount service... account ====> {}", accountId);
-        Account account = fabrickClient.getAccount(accountId, authSchema, apiKey);
-        if(ObjectUtils.isEmpty(account)){
+       AccountResponse account = fabrickClient.getAccount(accountId, authSchema, apiKey);
+        if(ObjectUtils.isEmpty(account) || ObjectUtils.isEmpty(account.getPayload())) {
             logger.error("no account found for id {}", accountId);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"no account found for id = ".concat(accountId));
         }
-        logger.info("end get account servce ===> {}ms with response ====> {}", System.currentTimeMillis() - start, account);
-        return accountMapper.outputModelToResource(account);
+        logger.info("end get account service ===> {}ms with response ====> {}", System.currentTimeMillis() - start, account);
+        return accountMapper.outputModelToResource(account.getPayload());
     }
 
     @Override
     public TransactionsResource getAccountTransactions(TransactionModel transactionModel) {
         long start = System.currentTimeMillis();
         logger.info("call getAccount service... transactionModel ====> {}", transactionModel);
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         Transactions accountTransactions = fabrickClient.getAccountTransactions(transactionModel.getAccountId(),
-                                                                                transactionModel.getFromAccountingDate(),
-                                                                                transactionModel.getFromAccountingDate(),
+                                                                                transactionModel.getFromAccountingDate().format(dateTimeFormatter),
+                                                                                transactionModel.getToAccountingDate().format(dateTimeFormatter),
                                                                                 authSchema, apiKey);
         if(ObjectUtils.isEmpty(accountTransactions) || CollectionUtils.isEmpty(accountTransactions.getTransactions())){
             logger.error("no transaction found for input {}", transactionModel);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"no transaction found");
         }
-        logger.info("end get account servce ===> {}ms with response ====> {}", System.currentTimeMillis() - start, accountTransactions);
+        logger.info("end get account service ===> {}ms with response ====> {}", System.currentTimeMillis() - start, accountTransactions);
         return accountMapper.outputModelToResource(accountTransactions);
     }
 }
