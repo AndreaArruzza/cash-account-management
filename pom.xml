@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>com.cash</groupId>
+	<groupId>com</groupId>
 	<artifactId>cash-account-management</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>cash-account-management</name>
@@ -22,8 +22,21 @@
 		<org.mapstruct.binding.version>0.2.0</org.mapstruct.binding.version>
 		<org.lombok.version>1.18.24</org.lombok.version>
 		<shared.global.version>0.0.1</shared.global.version>
-		<start-class>com.cash.cashaccountmanagement.Application</start-class>
+		<start-class>com.cashaccountmanagement.Application</start-class>
+		<spring-cloud.version>2021.0.1</spring-cloud.version>
 	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<dependencies>
 
@@ -114,6 +127,17 @@
 			<artifactId>postgresql</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.github.openfeign</groupId>
+			<artifactId>feign-okhttp</artifactId>
+			<version>10.11</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -150,6 +174,47 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src\contract\java</source>
+								<source>src\contract\resources</source>
+								<source>target/generated-sources</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.8</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -164,6 +229,7 @@
 						<version>5.4.0</version>
 						<executions>
 							<execution>
+								<id>account-api</id>
 								<goals>
 									<goal>generate</goal>
 								</goals>
@@ -172,11 +238,75 @@
 									<addCompileSourceRoot>false</addCompileSourceRoot>
 									<skipOverwrite>false</skipOverwrite>
 									<inputSpec>
-										${project.basedir}/src/contract/resources/user-management.yml
+										${project.basedir}/src/contract/resources/account-api.yml
 									</inputSpec>
-									<apiPackage>com.savemoney.usermanagement.api.v1</apiPackage>
-									<modelPackage>com.savemoney.usermanagement.model.v1</modelPackage>
-									<packageName>com.savemoney.usermanagement</packageName>
+									<apiPackage>com.cashaccountmanagement.account.api.v1</apiPackage>
+									<modelPackage>com.cashaccountmanagement.account.model.v1</modelPackage>
+									<packageName>com.cashaccountmanagement.account</packageName>
+									<generateApiDocumentation>false</generateApiDocumentation>
+									<generateModelDocumentation>false</generateModelDocumentation>
+									<output>${project.basedir}</output>
+									<generateSupportingFiles>true</generateSupportingFiles>
+									<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+									<configOptions>
+										<sourceFolder>src/contract/java</sourceFolder>
+										<dateLibrary>java8</dateLibrary>
+										<interfaceOnly>true</interfaceOnly>
+										<useBeanValidation>true</useBeanValidation>
+										<documentationProvider>none</documentationProvider>
+										<annotationLibrary>swagger2</annotationLibrary>
+										<openApiNullable>false</openApiNullable>
+										<skipDefaultInterface>true</skipDefaultInterface>
+									</configOptions>
+								</configuration>
+							</execution>
+							<execution>
+								<id>payment-api</id>
+								<goals>
+									<goal>generate</goal>
+								</goals>
+								<configuration>
+									<generatorName>spring</generatorName>
+									<addCompileSourceRoot>false</addCompileSourceRoot>
+									<skipOverwrite>false</skipOverwrite>
+									<inputSpec>
+										${project.basedir}/src/contract/resources/payment-api.yml
+									</inputSpec>
+									<apiPackage>com.cashaccountmanagement.payment.api.v1</apiPackage>
+									<modelPackage>com.cashaccountmanagement.payment.model.v1</modelPackage>
+									<packageName>com.cashaccountmanagement.payment</packageName>
+									<generateApiDocumentation>false</generateApiDocumentation>
+									<generateModelDocumentation>false</generateModelDocumentation>
+									<output>${project.basedir}</output>
+									<generateSupportingFiles>true</generateSupportingFiles>
+									<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+									<configOptions>
+										<sourceFolder>src/contract/java</sourceFolder>
+										<dateLibrary>java8</dateLibrary>
+										<interfaceOnly>true</interfaceOnly>
+										<useBeanValidation>true</useBeanValidation>
+										<documentationProvider>none</documentationProvider>
+										<annotationLibrary>swagger2</annotationLibrary>
+										<openApiNullable>false</openApiNullable>
+										<skipDefaultInterface>true</skipDefaultInterface>
+									</configOptions>
+								</configuration>
+							</execution>
+							<execution>
+								<id>fabrick client api</id>
+								<goals>
+									<goal>generate</goal>
+								</goals>
+								<configuration>
+									<generatorName>spring</generatorName>
+									<addCompileSourceRoot>false</addCompileSourceRoot>
+									<skipOverwrite>false</skipOverwrite>
+									<inputSpec>
+										${project.basedir}/src/contract/resources/fabrick-client-api.yml
+									</inputSpec>
+									<apiPackage>com.cashaccountmanagement.client.fabrick.api.v1</apiPackage>
+									<modelPackage>com.cashaccountmanagement.client.fabrick.model.v1</modelPackage>
+									<packageName>com.cashaccountmanagement.client.fabrick.client</packageName>
 									<generateApiDocumentation>false</generateApiDocumentation>
 									<generateModelDocumentation>false</generateModelDocumentation>
 									<output>${project.basedir}</output>

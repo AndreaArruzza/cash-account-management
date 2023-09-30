@@ -1,0 +1,427 @@
+openapi: "3.0.1"
+info:
+  title: Account API definition
+  version: v0
+servers:
+  - url: https://sandbox.platfr.io/api/gbs/banking/v4.0
+    description: Generated server url
+
+paths:
+  /account/{accountId}:
+    get:
+      summary: get account
+      operationId: getAccount
+      parameters:
+        - name: accountId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not found
+
+
+  /account/{accountId}/transactions:
+    get:
+      summary: get transactions by account id
+      operationId: getAccountTransactions
+      parameters:
+        - name: accountId
+          in: path
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: fromAccountingDate
+          schema:
+            type: string
+            format: date
+          required: true
+        - in: query
+          name: toAccountingDate
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transactions'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not found
+
+
+  /payment/{accountId}/money-transfers:
+    post:
+      summary: Insert a new money transfer
+      operationId: createMoneyTransfer
+      tags:
+        - Payment
+      parameters:
+        - name: accountId
+          in: path
+          schema:
+            type: string
+          required: true
+      requestBody:
+        description: create money transfer dto
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MoneyTransferDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MoneyTransfer'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not found
+
+
+
+components:
+  schemas:
+
+    Account:
+      type: object
+      properties:
+        accountId:
+          type: string
+          example: '14930637'
+        iban:
+          type: string
+          example: 'IT22D3706978430115706240270'
+        abiCode:
+          type: string
+          example: '37069'
+        cabCode:
+          type: string
+          example: '78430'
+        countryCode:
+          type: string
+          example: 'IT'
+        internationalCin:
+          type: string
+          example: '22'
+        nationalCin:
+          type: string
+          example: '22'
+        account:
+          type: string
+          example: '115706240270'
+        alias:
+          type: string
+          example: 'Company main account'
+        productName:
+          type: string
+          example: 'Generic company cash account'
+        holderName:
+          type: string
+          example: 'ACME Inc.'
+        activatedDate:
+          type: string
+          format: date
+        currency:
+          type: string
+          example: 'EUR'
+
+    Transactions:
+      type: object
+      properties:
+        Transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+
+    Transaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        operationId:
+          type: string
+        accountingDate:
+          type: string
+        valueDate:
+          type: string
+          format: date
+        type:
+          $ref: '#/components/schemas/Type'
+        amount:
+          type: integer
+        currency:
+          type: string
+        description:
+          type: string
+
+
+    Type:
+      type: object
+      properties:
+        enumeration:
+          type: string
+        operationId:
+          type: string
+
+
+    MoneyTransferDTO:
+      type: object
+      required:
+        - receiverName
+        - description
+        - currency
+        - amount
+      properties:
+        creditor:
+          $ref: '#/components/schemas/Creditor'
+        executionDate:
+          type: string
+          format: date
+        uri:
+          type: string
+        description:
+          type: string
+        amount:
+          type: number
+          format: int64
+        currency:
+          type: string
+        isUrgent:
+          type: boolean
+        isInstant:
+          type: boolean
+        feeType:
+          type: string
+        feeAccountId:
+          type: string
+        taxRelief:
+          $ref: '#/components/schemas/TaxRelief'
+
+    Creditor:
+      type: object
+      required:
+        - account
+      properties:
+        name:
+          type: string
+        account:
+          $ref: '#/components/schemas/AccountMoneyTransfer'
+        address:
+          $ref: '#/components/schemas/Address'
+
+    AccountMoneyTransfer:
+      type: object
+      required:
+        -  accountCode
+      properties:
+        accountCode:
+          type: string
+        bicCode:
+          type: string
+
+    Address:
+      type: object
+      properties:
+        address:
+          type: string
+        city:
+          type: string
+        countryCode:
+          type: string
+
+
+    TaxRelief:
+      type: object
+      required:
+        - isCondoUpgrade
+        - creditorFiscalCode
+        - beneficiaryType
+      properties:
+        taxReliefId:
+          type: string
+        isCondoUpgrade:
+          type: boolean
+        creditorFiscalCode:
+          type: string
+        beneficiaryType:
+          type: string
+        naturalPersonBeneficiary:
+          $ref: '#/components/schemas/NaturalPersonBeneficiary'
+        legalPersonBeneficiary:
+          $ref: '#/components/schemas/LegalPersonBeneficiary'
+
+
+    NaturalPersonBeneficiary:
+      type: object
+      required:
+        - fiscalCode1
+      properties:
+        fiscalCode1:
+          type: string
+        fiscalCode2:
+          type: string
+        fiscalCode3:
+          type: string
+        fiscalCode4:
+          type: string
+        fiscalCode5:
+          type: string
+
+    LegalPersonBeneficiary:
+      type: object
+      required:
+        - fiscalCode
+      properties:
+        fiscalCode:
+          type: string
+        legalRepresentativeFiscalCode:
+          type: string
+
+
+    MoneyTransfer:
+      type: object
+      properties:
+        moneyTransferId:
+          type: string
+          description: The ID of the money transfer.
+        status:
+          type: string
+          description: The status of the money transfer (e.g., EXECUTED).
+        direction:
+          type: string
+          description: The direction of the money transfer (e.g., OUTGOING).
+        creditor:
+          $ref: '#/components/schemas/Creditor'
+        debtor:
+          type: object
+          properties:
+            name:
+              type: string
+              description: The name of the debtor.
+            account:
+              type: object
+              properties:
+                accountCode:
+                  type: string
+                  description: The account code of the debtor.
+                bicCode:
+                  type: string
+                  description: The BIC code of the debtor.
+        cro:
+          type: string
+          description: The CRO (Common Reference Number) of the money transfer.
+        uri:
+          type: string
+          description: The URI associated with the money transfer.
+        trn:
+          type: string
+          description: The TRN (Transaction Reference Number) of the money transfer.
+        description:
+          type: string
+          description: A description of the money transfer.
+        createdDatetime:
+          type: string
+          format: date-time
+          description: The datetime when the money transfer was created.
+        accountedDatetime:
+          type: string
+          format: date-time
+          description: The datetime when the money transfer was accounted for.
+        debtorValueDate:
+          type: string
+          format: date
+          description: The value date for the debtor.
+        creditorValueDate:
+          type: string
+          format: date
+          description: The value date for the creditor.
+        amount:
+          $ref: '#/components/schemas/Amount'
+        isUrgent:
+          type: boolean
+          description: Indicates if the transfer is urgent.
+        isInstant:
+          type: boolean
+          description: Indicates if the transfer is instant.
+        feeType:
+          type: string
+          description: The fee type (e.g., SHA).
+        feeAccountId:
+          type: string
+          description: The account ID associated with the fees.
+        fees:
+          type: array
+          items:
+            type: object
+            properties:
+              feeCode:
+                type: string
+                description: The code of the fee.
+              description:
+                type: string
+                description: The description of the fee.
+              amount:
+                type: number
+                description: The amount of the fee.
+              currency:
+                type: string
+                description: The currency of the fee (e.g., EUR).
+        hasTaxRelief:
+          type: boolean
+          description: Indicates if tax relief applies to the transfer.
+
+
+    Amount:
+      type: object
+      properties:
+        debtorAmount:
+          type: number
+          description: The amount in the debtor's currency.
+        debtorCurrency:
+          type: string
+          description: The currency of the debtor's amount (e.g., EUR).
+        creditorAmount:
+          type: number
+          description: The amount in the creditor's currency.
+        creditorCurrency:
+          type: string
+          description: The currency of the creditor's amount (e.g., EUR).
+        creditorCurrencyDate:
+          type: string
+          format: date
+          description: The currency conversion date.
+        exchangeRate:
+          type: number
+          description: The exchange rate used for the currency conversion.
+

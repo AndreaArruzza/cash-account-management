@@ -33,6 +33,16 @@ spring:
       name: pippo
       password: pippo
 
+feign:
+  client:
+    config:
+      fabrick:
+        basePath: https://sandbox.platfr.io/api/gbs/banking
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+
 management:
   endpoints:
     web:
@@ -51,3 +61,7 @@ info:
 
 microserviceCode: CashAccountManagement
 
+
+auth:
+  auth-schema: S2S
+  api-key: FXOVVXXHVCPVPBZXIJOBGUGSKHDNFRRQJP

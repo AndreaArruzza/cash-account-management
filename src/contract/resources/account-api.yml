@@ -1,0 +1,161 @@
+openapi: "3.0.1"
+info:
+  title: Account API definition
+  version: v0
+servers:
+  - url: http://localhost:8081/cash-account-management/v1
+    description: Generated server url
+
+paths:
+  /account/{accountId}:
+    get:
+      summary: get account
+      operationId: getAccount
+      tags:
+        - Account
+      parameters:
+        - name: accountId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResource'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not found
+
+
+  /account/{accountId}/transactions:
+    get:
+      summary: get transactions by account id
+      operationId: getAccountTransactions
+      tags:
+        - Account
+      parameters:
+        - name: accountId
+          in: path
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: fromAccountingDate
+          schema:
+            type: string
+            format: date
+          required: true
+        - in: query
+          name: toAccountingDate
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionsResource'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not found
+
+components:
+  schemas:
+
+    AccountResource:
+      type: object
+      properties:
+        accountId:
+          type: string
+          example: '14930637'
+        iban:
+          type: string
+          example: 'IT22D3706978430115706240270'
+        abiCode:
+          type: string
+          example: '37069'
+        cabCode:
+          type: string
+          example: '78430'
+        countryCode:
+          type: string
+          example: 'IT'
+        internationalCin:
+          type: string
+          example: '22'
+        nationalCin:
+          type: string
+          example: '22'
+        account:
+          type: string
+          example: '115706240270'
+        alias:
+          type: string
+          example: 'Company main account'
+        productName:
+          type: string
+          example: 'Generic company cash account'
+        holderName:
+          type: string
+          example: 'ACME Inc.'
+        activatedDate:
+          type: string
+          format: date
+        currency:
+          type: string
+          example: 'EUR'
+    TransactionsResource:
+      type: object
+      properties:
+        Transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionResource'
+
+    TransactionResource:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        operationId:
+          type: string
+        accountingDate:
+          type: string
+        valueDate:
+          type: string
+          format: date
+        type:
+          $ref: '#/components/schemas/Type'
+        amount:
+          type: integer
+        currency:
+          type: string
+        description:
+          type: string
+
+
+    Type:
+      type: object
+      properties:
+        enumeration:
+          type: string
+        operationId:
+          type: string
+
