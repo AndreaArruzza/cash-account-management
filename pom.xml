@@ -137,8 +137,13 @@
 			<artifactId>feign-okhttp</artifactId>
 			<version>10.11</version>
 		</dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<finalName>${jar.name}</finalName>

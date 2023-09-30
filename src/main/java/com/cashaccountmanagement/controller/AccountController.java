@@ -19,9 +19,6 @@ public class AccountController implements AccountApi {
     private AccountService accountService;
 
     @Autowired
-    private PaymentService paymentService;
-
-    @Autowired
     private AccountMapper accountMapper;
 
     @Override
