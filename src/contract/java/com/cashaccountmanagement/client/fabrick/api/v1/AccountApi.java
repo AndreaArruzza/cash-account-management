@@ -8,7 +8,7 @@ package com.cashaccountmanagement.client.fabrick.api.v1;
 import com.cashaccountmanagement.client.fabrick.model.v1.AccountResponse;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
-import com.cashaccountmanagement.client.fabrick.model.v1.Transactions;
+import com.cashaccountmanagement.client.fabrick.model.v1.TransactionsResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T19:46:08.386262800+02:00[Europe/Berlin]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T23:01:26.207791600+02:00[Europe/Berlin]")
 @Validated
 @Tag(name = "account", description = "the account API")
 public interface AccountApi {
@@ -84,7 +84,7 @@ public interface AccountApi {
         operationId = "getAccountTransactions",
         summary = "get transactions by account id",
         responses = {
-            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  Transactions.class))),
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  TransactionsResponse.class))),
             @ApiResponse(responseCode = "201", description = "Created"),
             @ApiResponse(responseCode = "401", description = "Unauthorized"),
             @ApiResponse(responseCode = "403", description = "Forbidden"),
@@ -96,7 +96,7 @@ public interface AccountApi {
         value = "/account/{accountId}/transactions",
         produces = { "application/json" }
     )
-    ResponseEntity<Transactions> getAccountTransactions(
+    ResponseEntity<TransactionsResponse> getAccountTransactions(
         @Parameter(name = "accountId", description = "", required = true, schema = @Schema(description = "")) @PathVariable("accountId") String accountId,
         @NotNull @Parameter(name = "fromAccountingDate", description = "", required = true, schema = @Schema(description = "")) @Valid @RequestParam(value = "fromAccountingDate", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromAccountingDate,
         @NotNull @Parameter(name = "toAccountingDate", description = "", required = true, schema = @Schema(description = "")) @Valid @RequestParam(value = "toAccountingDate", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toAccountingDate

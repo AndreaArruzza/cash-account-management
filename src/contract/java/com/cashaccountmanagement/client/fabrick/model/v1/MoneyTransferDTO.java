@@ -7,8 +7,6 @@ import com.cashaccountmanagement.client.fabrick.model.v1.TaxRelief;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import org.springframework.format.annotation.DateTimeFormat;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -22,15 +20,14 @@ import javax.annotation.Generated;
  * MoneyTransferDTO
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T19:46:08.386262800+02:00[Europe/Berlin]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T23:01:26.207791600+02:00[Europe/Berlin]")
 public class MoneyTransferDTO   {
 
   @JsonProperty("creditor")
   private Creditor creditor;
 
   @JsonProperty("executionDate")
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-  private LocalDate executionDate;
+  private String executionDate;
 
   @JsonProperty("uri")
   private String uri;
@@ -78,7 +75,7 @@ public class MoneyTransferDTO   {
     this.creditor = creditor;
   }
 
-  public MoneyTransferDTO executionDate(LocalDate executionDate) {
+  public MoneyTransferDTO executionDate(String executionDate) {
     this.executionDate = executionDate;
     return this;
   }
@@ -87,13 +84,13 @@ public class MoneyTransferDTO   {
    * Get executionDate
    * @return executionDate
   */
-  @Valid 
+  
   @Schema(name = "executionDate", required = false)
-  public LocalDate getExecutionDate() {
+  public String getExecutionDate() {
     return executionDate;
   }
 
-  public void setExecutionDate(LocalDate executionDate) {
+  public void setExecutionDate(String executionDate) {
     this.executionDate = executionDate;
   }
 

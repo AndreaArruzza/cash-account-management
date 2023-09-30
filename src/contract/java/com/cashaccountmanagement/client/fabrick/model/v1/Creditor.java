@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * Creditor
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T19:46:08.386262800+02:00[Europe/Berlin]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T23:01:26.207791600+02:00[Europe/Berlin]")
 public class Creditor   {
 
   @JsonProperty("name")

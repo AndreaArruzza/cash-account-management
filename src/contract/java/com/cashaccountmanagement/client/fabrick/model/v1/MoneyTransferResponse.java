@@ -2,7 +2,7 @@ package com.cashaccountmanagement.client.fabrick.model.v1;
 
 import java.net.URI;
 import java.util.Objects;
-import com.cashaccountmanagement.client.fabrick.model.v1.AccountPayload;
+import com.cashaccountmanagement.client.fabrick.model.v1.MoneyTransferPayload;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -17,11 +17,11 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * AccountResponse
+ * MoneyTransferResponse
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T23:01:26.207791600+02:00[Europe/Berlin]")
-public class AccountResponse   {
+public class MoneyTransferResponse   {
 
   @JsonProperty("status")
   private String status;
@@ -31,9 +31,9 @@ public class AccountResponse   {
   private List<Object> error = null;
 
   @JsonProperty("payload")
-  private AccountPayload payload;
+  private MoneyTransferPayload payload;
 
-  public AccountResponse status(String status) {
+  public MoneyTransferResponse status(String status) {
     this.status = status;
     return this;
   }
@@ -52,12 +52,12 @@ public class AccountResponse   {
     this.status = status;
   }
 
-  public AccountResponse error(List<Object> error) {
+  public MoneyTransferResponse error(List<Object> error) {
     this.error = error;
     return this;
   }
 
-  public AccountResponse addErrorItem(Object errorItem) {
+  public MoneyTransferResponse addErrorItem(Object errorItem) {
     if (this.error == null) {
       this.error = new ArrayList<>();
     }
@@ -79,7 +79,7 @@ public class AccountResponse   {
     this.error = error;
   }
 
-  public AccountResponse payload(AccountPayload payload) {
+  public MoneyTransferResponse payload(MoneyTransferPayload payload) {
     this.payload = payload;
     return this;
   }
@@ -90,11 +90,11 @@ public class AccountResponse   {
   */
   @Valid 
   @Schema(name = "payload", required = false)
-  public AccountPayload getPayload() {
+  public MoneyTransferPayload getPayload() {
     return payload;
   }
 
-  public void setPayload(AccountPayload payload) {
+  public void setPayload(MoneyTransferPayload payload) {
     this.payload = payload;
   }
 
@@ -106,10 +106,10 @@ public class AccountResponse   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AccountResponse accountResponse = (AccountResponse) o;
-    return Objects.equals(this.status, accountResponse.status) &&
-        Objects.equals(this.error, accountResponse.error) &&
-        Objects.equals(this.payload, accountResponse.payload);
+    MoneyTransferResponse moneyTransferResponse = (MoneyTransferResponse) o;
+    return Objects.equals(this.status, moneyTransferResponse.status) &&
+        Objects.equals(this.error, moneyTransferResponse.error) &&
+        Objects.equals(this.payload, moneyTransferResponse.payload);
   }
 
   @Override
@@ -120,7 +120,7 @@ public class AccountResponse   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AccountResponse {\n");
+    sb.append("class MoneyTransferResponse {\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("    payload: ").append(toIndentedString(payload)).append("\n");

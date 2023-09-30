@@ -14,11 +14,11 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * MoneyTransferDebtorAccount
+ * MoneyTransferPayloadDebtorAccount
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T19:46:08.386262800+02:00[Europe/Berlin]")
-public class MoneyTransferDebtorAccount   {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T23:01:26.207791600+02:00[Europe/Berlin]")
+public class MoneyTransferPayloadDebtorAccount   {
 
   @JsonProperty("accountCode")
   private String accountCode;
@@ -26,7 +26,7 @@ public class MoneyTransferDebtorAccount   {
   @JsonProperty("bicCode")
   private String bicCode;
 
-  public MoneyTransferDebtorAccount accountCode(String accountCode) {
+  public MoneyTransferPayloadDebtorAccount accountCode(String accountCode) {
     this.accountCode = accountCode;
     return this;
   }
@@ -45,7 +45,7 @@ public class MoneyTransferDebtorAccount   {
     this.accountCode = accountCode;
   }
 
-  public MoneyTransferDebtorAccount bicCode(String bicCode) {
+  public MoneyTransferPayloadDebtorAccount bicCode(String bicCode) {
     this.bicCode = bicCode;
     return this;
   }
@@ -72,9 +72,9 @@ public class MoneyTransferDebtorAccount   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MoneyTransferDebtorAccount moneyTransferDebtorAccount = (MoneyTransferDebtorAccount) o;
-    return Objects.equals(this.accountCode, moneyTransferDebtorAccount.accountCode) &&
-        Objects.equals(this.bicCode, moneyTransferDebtorAccount.bicCode);
+    MoneyTransferPayloadDebtorAccount moneyTransferPayloadDebtorAccount = (MoneyTransferPayloadDebtorAccount) o;
+    return Objects.equals(this.accountCode, moneyTransferPayloadDebtorAccount.accountCode) &&
+        Objects.equals(this.bicCode, moneyTransferPayloadDebtorAccount.bicCode);
   }
 
   @Override
@@ -85,7 +85,7 @@ public class MoneyTransferDebtorAccount   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MoneyTransferDebtorAccount {\n");
+    sb.append("class MoneyTransferPayloadDebtorAccount {\n");
     sb.append("    accountCode: ").append(toIndentedString(accountCode)).append("\n");
     sb.append("    bicCode: ").append(toIndentedString(bicCode)).append("\n");
     sb.append("}");

@@ -7,7 +7,8 @@ import com.cashaccountmanagement.client.FabrickClient;
 import com.cashaccountmanagement.client.fabrick.model.v1.AccountPayload;
 import com.cashaccountmanagement.client.fabrick.model.v1.AccountResponse;
 import com.cashaccountmanagement.client.fabrick.model.v1.Transaction;
-import com.cashaccountmanagement.client.fabrick.model.v1.Transactions;
+import com.cashaccountmanagement.client.fabrick.model.v1.TransactionsResponse;
+import com.cashaccountmanagement.config.properties.AuthProperties;
 import com.cashaccountmanagement.mapper.AccountMapper;
 import com.cashaccountmanagement.model.TransactionModel;
 import com.cashaccountmanagement.service.impl.AccountServiceImpl;
@@ -20,6 +21,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -39,6 +42,9 @@ public class AccountServiceTest {
 
     @Mock
     private AccountMapper accountMapper;
+
+    @Mock
+    private AuthProperties authProperties;
 
     @Test
     void getAccount_OK(){
@@ -60,7 +66,7 @@ public class AccountServiceTest {
 
     @Test
     void getAccountTransactions_OK(){
-        Transactions transactionsMock = getTransactionsMock();
+        TransactionsResponse transactionsMock = getTransactionsMock();
         when(fabrickClient.getAccountTransactions(any(),any(), any(),any(),any())).thenReturn(transactionsMock);
         when(accountMapper.outputModelToResource(transactionsMock)).thenReturn(getTransactionsResourceMock());
 
@@ -96,12 +102,14 @@ public class AccountServiceTest {
     }
 
     @NotNull
-    private Transactions getTransactionsMock () {
-        Transactions transactions = new Transactions();
+    private TransactionsResponse getTransactionsMock () {
+        TransactionsResponse transactions = new TransactionsResponse();
         Transaction transaction = new Transaction();
         transaction.setTransactionId("1123");
         transaction.setCurrency("EUR");
-        transactions.addTransactionsItem(transaction);
+        List<Transaction> payload = new ArrayList<>();
+        payload.add(transaction);
+        transactions.setPayload(payload);
         return transactions;
     }
 

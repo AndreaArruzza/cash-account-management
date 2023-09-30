@@ -62,7 +62,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Transactions'
+                $ref: '#/components/schemas/TransactionsResponse'
         '201':
           description: Created
         '401':
@@ -98,7 +98,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MoneyTransfer'
+                $ref: '#/components/schemas/MoneyTransferResponse'
         '201':
           description: Created
         '401':
@@ -168,10 +168,16 @@ components:
           type: string
           example: 'EUR'
 
-    Transactions:
+    TransactionsResponse:
       type: object
       properties:
-        Transactions:
+        status:
+          type: string
+          example: OK
+        error:
+          type: array
+          items: { }
+        payload:
           type: array
           items:
             $ref: '#/components/schemas/Transaction'
@@ -219,7 +225,6 @@ components:
           $ref: '#/components/schemas/Creditor'
         executionDate:
           type: string
-          format: date
         uri:
           type: string
         description:
@@ -321,7 +326,18 @@ components:
           type: string
 
 
-    MoneyTransfer:
+    MoneyTransferResponse:
+      properties:
+        status:
+          type: string
+          example: OK
+        error:
+          type: array
+          items: { }
+        payload:
+          $ref: '#/components/schemas/MoneyTransferPayload'
+
+    MoneyTransferPayload:
       type: object
       properties:
         moneyTransferId:

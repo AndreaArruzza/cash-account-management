@@ -5,8 +5,8 @@
  */
 package com.cashaccountmanagement.client.fabrick.api.v1;
 
-import com.cashaccountmanagement.client.fabrick.model.v1.MoneyTransfer;
 import com.cashaccountmanagement.client.fabrick.model.v1.MoneyTransferDTO;
+import com.cashaccountmanagement.client.fabrick.model.v1.MoneyTransferResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -30,7 +30,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T19:46:08.386262800+02:00[Europe/Berlin]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T23:01:26.207791600+02:00[Europe/Berlin]")
 @Validated
 @Tag(name = "payment", description = "the payment API")
 public interface PaymentApi {
@@ -51,7 +51,7 @@ public interface PaymentApi {
         summary = "Insert a new money transfer",
         tags = { "Payment" },
         responses = {
-            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  MoneyTransfer.class))),
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  MoneyTransferResponse.class))),
             @ApiResponse(responseCode = "201", description = "Created"),
             @ApiResponse(responseCode = "401", description = "Unauthorized"),
             @ApiResponse(responseCode = "403", description = "Forbidden"),
@@ -64,7 +64,7 @@ public interface PaymentApi {
         produces = { "application/json" },
         consumes = { "application/json" }
     )
-    ResponseEntity<MoneyTransfer> createMoneyTransfer(
+    ResponseEntity<MoneyTransferResponse> createMoneyTransfer(
         @Parameter(name = "accountId", description = "", required = true, schema = @Schema(description = "")) @PathVariable("accountId") String accountId,
         @Parameter(name = "MoneyTransferDTO", description = "create money transfer dto", required = true, schema = @Schema(description = "")) @Valid @RequestBody MoneyTransferDTO moneyTransferDTO
     );

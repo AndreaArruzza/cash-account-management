@@ -5,6 +5,7 @@ import com.cashaccountmanagement.account.model.v1.TransactionResource;
 import com.cashaccountmanagement.account.model.v1.TransactionsResource;
 import com.cashaccountmanagement.mapper.AccountMapper;
 import com.cashaccountmanagement.service.AccountService;
+import com.cashaccountmanagement.service.impl.PaymentServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
@@ -39,6 +40,9 @@ public class AccountControllerTest {
 
     @MockBean
     private AccountMapper AccountMapper;
+
+    @MockBean
+    private PaymentServiceImpl paymentService;
 
     @Test
     public void getAccount() throws Exception

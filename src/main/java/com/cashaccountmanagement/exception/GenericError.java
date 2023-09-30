@@ -1,4 +1,4 @@
-package com.cashaccountmanagement.model;
+package com.cashaccountmanagement.exception;
 
 import lombok.Data;
 

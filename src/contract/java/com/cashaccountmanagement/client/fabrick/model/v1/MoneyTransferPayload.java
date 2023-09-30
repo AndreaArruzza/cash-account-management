@@ -4,8 +4,8 @@ import java.net.URI;
 import java.util.Objects;
 import com.cashaccountmanagement.client.fabrick.model.v1.Amount;
 import com.cashaccountmanagement.client.fabrick.model.v1.Creditor;
-import com.cashaccountmanagement.client.fabrick.model.v1.MoneyTransferDebtor;
-import com.cashaccountmanagement.client.fabrick.model.v1.MoneyTransferFees;
+import com.cashaccountmanagement.client.fabrick.model.v1.MoneyTransferPayloadDebtor;
+import com.cashaccountmanagement.client.fabrick.model.v1.MoneyTransferPayloadFees;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.time.LocalDate;
@@ -23,11 +23,11 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * MoneyTransfer
+ * MoneyTransferPayload
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T19:46:08.386262800+02:00[Europe/Berlin]")
-public class MoneyTransfer   {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T23:01:26.207791600+02:00[Europe/Berlin]")
+public class MoneyTransferPayload   {
 
   @JsonProperty("moneyTransferId")
   private String moneyTransferId;
@@ -42,7 +42,7 @@ public class MoneyTransfer   {
   private Creditor creditor;
 
   @JsonProperty("debtor")
-  private MoneyTransferDebtor debtor;
+  private MoneyTransferPayloadDebtor debtor;
 
   @JsonProperty("cro")
   private String cro;
@@ -89,12 +89,12 @@ public class MoneyTransfer   {
 
   @JsonProperty("fees")
   @Valid
-  private List<MoneyTransferFees> fees = null;
+  private List<MoneyTransferPayloadFees> fees = null;
 
   @JsonProperty("hasTaxRelief")
   private Boolean hasTaxRelief;
 
-  public MoneyTransfer moneyTransferId(String moneyTransferId) {
+  public MoneyTransferPayload moneyTransferId(String moneyTransferId) {
     this.moneyTransferId = moneyTransferId;
     return this;
   }
@@ -113,7 +113,7 @@ public class MoneyTransfer   {
     this.moneyTransferId = moneyTransferId;
   }
 
-  public MoneyTransfer status(String status) {
+  public MoneyTransferPayload status(String status) {
     this.status = status;
     return this;
   }
@@ -132,7 +132,7 @@ public class MoneyTransfer   {
     this.status = status;
   }
 
-  public MoneyTransfer direction(String direction) {
+  public MoneyTransferPayload direction(String direction) {
     this.direction = direction;
     return this;
   }
@@ -151,7 +151,7 @@ public class MoneyTransfer   {
     this.direction = direction;
   }
 
-  public MoneyTransfer creditor(Creditor creditor) {
+  public MoneyTransferPayload creditor(Creditor creditor) {
     this.creditor = creditor;
     return this;
   }
@@ -170,7 +170,7 @@ public class MoneyTransfer   {
     this.creditor = creditor;
   }
 
-  public MoneyTransfer debtor(MoneyTransferDebtor debtor) {
+  public MoneyTransferPayload debtor(MoneyTransferPayloadDebtor debtor) {
     this.debtor = debtor;
     return this;
   }
@@ -181,15 +181,15 @@ public class MoneyTransfer   {
   */
   @Valid 
   @Schema(name = "debtor", required = false)
-  public MoneyTransferDebtor getDebtor() {
+  public MoneyTransferPayloadDebtor getDebtor() {
     return debtor;
   }
 
-  public void setDebtor(MoneyTransferDebtor debtor) {
+  public void setDebtor(MoneyTransferPayloadDebtor debtor) {
     this.debtor = debtor;
   }
 
-  public MoneyTransfer cro(String cro) {
+  public MoneyTransferPayload cro(String cro) {
     this.cro = cro;
     return this;
   }
@@ -208,7 +208,7 @@ public class MoneyTransfer   {
     this.cro = cro;
   }
 
-  public MoneyTransfer uri(String uri) {
+  public MoneyTransferPayload uri(String uri) {
     this.uri = uri;
     return this;
   }
@@ -227,7 +227,7 @@ public class MoneyTransfer   {
     this.uri = uri;
   }
 
-  public MoneyTransfer trn(String trn) {
+  public MoneyTransferPayload trn(String trn) {
     this.trn = trn;
     return this;
   }
@@ -246,7 +246,7 @@ public class MoneyTransfer   {
     this.trn = trn;
   }
 
-  public MoneyTransfer description(String description) {
+  public MoneyTransferPayload description(String description) {
     this.description = description;
     return this;
   }
@@ -265,7 +265,7 @@ public class MoneyTransfer   {
     this.description = description;
   }
 
-  public MoneyTransfer createdDatetime(OffsetDateTime createdDatetime) {
+  public MoneyTransferPayload createdDatetime(OffsetDateTime createdDatetime) {
     this.createdDatetime = createdDatetime;
     return this;
   }
@@ -284,7 +284,7 @@ public class MoneyTransfer   {
     this.createdDatetime = createdDatetime;
   }
 
-  public MoneyTransfer accountedDatetime(OffsetDateTime accountedDatetime) {
+  public MoneyTransferPayload accountedDatetime(OffsetDateTime accountedDatetime) {
     this.accountedDatetime = accountedDatetime;
     return this;
   }
@@ -303,7 +303,7 @@ public class MoneyTransfer   {
     this.accountedDatetime = accountedDatetime;
   }
 
-  public MoneyTransfer debtorValueDate(LocalDate debtorValueDate) {
+  public MoneyTransferPayload debtorValueDate(LocalDate debtorValueDate) {
     this.debtorValueDate = debtorValueDate;
     return this;
   }
@@ -322,7 +322,7 @@ public class MoneyTransfer   {
     this.debtorValueDate = debtorValueDate;
   }
 
-  public MoneyTransfer creditorValueDate(LocalDate creditorValueDate) {
+  public MoneyTransferPayload creditorValueDate(LocalDate creditorValueDate) {
     this.creditorValueDate = creditorValueDate;
     return this;
   }
@@ -341,7 +341,7 @@ public class MoneyTransfer   {
     this.creditorValueDate = creditorValueDate;
   }
 
-  public MoneyTransfer amount(Amount amount) {
+  public MoneyTransferPayload amount(Amount amount) {
     this.amount = amount;
     return this;
   }
@@ -360,7 +360,7 @@ public class MoneyTransfer   {
     this.amount = amount;
   }
 
-  public MoneyTransfer isUrgent(Boolean isUrgent) {
+  public MoneyTransferPayload isUrgent(Boolean isUrgent) {
     this.isUrgent = isUrgent;
     return this;
   }
@@ -379,7 +379,7 @@ public class MoneyTransfer   {
     this.isUrgent = isUrgent;
   }
 
-  public MoneyTransfer isInstant(Boolean isInstant) {
+  public MoneyTransferPayload isInstant(Boolean isInstant) {
     this.isInstant = isInstant;
     return this;
   }
@@ -398,7 +398,7 @@ public class MoneyTransfer   {
     this.isInstant = isInstant;
   }
 
-  public MoneyTransfer feeType(String feeType) {
+  public MoneyTransferPayload feeType(String feeType) {
     this.feeType = feeType;
     return this;
   }
@@ -417,7 +417,7 @@ public class MoneyTransfer   {
     this.feeType = feeType;
   }
 
-  public MoneyTransfer feeAccountId(String feeAccountId) {
+  public MoneyTransferPayload feeAccountId(String feeAccountId) {
     this.feeAccountId = feeAccountId;
     return this;
   }
@@ -436,12 +436,12 @@ public class MoneyTransfer   {
     this.feeAccountId = feeAccountId;
   }
 
-  public MoneyTransfer fees(List<MoneyTransferFees> fees) {
+  public MoneyTransferPayload fees(List<MoneyTransferPayloadFees> fees) {
     this.fees = fees;
     return this;
   }
 
-  public MoneyTransfer addFeesItem(MoneyTransferFees feesItem) {
+  public MoneyTransferPayload addFeesItem(MoneyTransferPayloadFees feesItem) {
     if (this.fees == null) {
       this.fees = new ArrayList<>();
     }
@@ -455,15 +455,15 @@ public class MoneyTransfer   {
   */
   @Valid 
   @Schema(name = "fees", required = false)
-  public List<MoneyTransferFees> getFees() {
+  public List<MoneyTransferPayloadFees> getFees() {
     return fees;
   }
 
-  public void setFees(List<MoneyTransferFees> fees) {
+  public void setFees(List<MoneyTransferPayloadFees> fees) {
     this.fees = fees;
   }
 
-  public MoneyTransfer hasTaxRelief(Boolean hasTaxRelief) {
+  public MoneyTransferPayload hasTaxRelief(Boolean hasTaxRelief) {
     this.hasTaxRelief = hasTaxRelief;
     return this;
   }
@@ -490,27 +490,27 @@ public class MoneyTransfer   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MoneyTransfer moneyTransfer = (MoneyTransfer) o;
-    return Objects.equals(this.moneyTransferId, moneyTransfer.moneyTransferId) &&
-        Objects.equals(this.status, moneyTransfer.status) &&
-        Objects.equals(this.direction, moneyTransfer.direction) &&
-        Objects.equals(this.creditor, moneyTransfer.creditor) &&
-        Objects.equals(this.debtor, moneyTransfer.debtor) &&
-        Objects.equals(this.cro, moneyTransfer.cro) &&
-        Objects.equals(this.uri, moneyTransfer.uri) &&
-        Objects.equals(this.trn, moneyTransfer.trn) &&
-        Objects.equals(this.description, moneyTransfer.description) &&
-        Objects.equals(this.createdDatetime, moneyTransfer.createdDatetime) &&
-        Objects.equals(this.accountedDatetime, moneyTransfer.accountedDatetime) &&
-        Objects.equals(this.debtorValueDate, moneyTransfer.debtorValueDate) &&
-        Objects.equals(this.creditorValueDate, moneyTransfer.creditorValueDate) &&
-        Objects.equals(this.amount, moneyTransfer.amount) &&
-        Objects.equals(this.isUrgent, moneyTransfer.isUrgent) &&
-        Objects.equals(this.isInstant, moneyTransfer.isInstant) &&
-        Objects.equals(this.feeType, moneyTransfer.feeType) &&
-        Objects.equals(this.feeAccountId, moneyTransfer.feeAccountId) &&
-        Objects.equals(this.fees, moneyTransfer.fees) &&
-        Objects.equals(this.hasTaxRelief, moneyTransfer.hasTaxRelief);
+    MoneyTransferPayload moneyTransferPayload = (MoneyTransferPayload) o;
+    return Objects.equals(this.moneyTransferId, moneyTransferPayload.moneyTransferId) &&
+        Objects.equals(this.status, moneyTransferPayload.status) &&
+        Objects.equals(this.direction, moneyTransferPayload.direction) &&
+        Objects.equals(this.creditor, moneyTransferPayload.creditor) &&
+        Objects.equals(this.debtor, moneyTransferPayload.debtor) &&
+        Objects.equals(this.cro, moneyTransferPayload.cro) &&
+        Objects.equals(this.uri, moneyTransferPayload.uri) &&
+        Objects.equals(this.trn, moneyTransferPayload.trn) &&
+        Objects.equals(this.description, moneyTransferPayload.description) &&
+        Objects.equals(this.createdDatetime, moneyTransferPayload.createdDatetime) &&
+        Objects.equals(this.accountedDatetime, moneyTransferPayload.accountedDatetime) &&
+        Objects.equals(this.debtorValueDate, moneyTransferPayload.debtorValueDate) &&
+        Objects.equals(this.creditorValueDate, moneyTransferPayload.creditorValueDate) &&
+        Objects.equals(this.amount, moneyTransferPayload.amount) &&
+        Objects.equals(this.isUrgent, moneyTransferPayload.isUrgent) &&
+        Objects.equals(this.isInstant, moneyTransferPayload.isInstant) &&
+        Objects.equals(this.feeType, moneyTransferPayload.feeType) &&
+        Objects.equals(this.feeAccountId, moneyTransferPayload.feeAccountId) &&
+        Objects.equals(this.fees, moneyTransferPayload.fees) &&
+        Objects.equals(this.hasTaxRelief, moneyTransferPayload.hasTaxRelief);
   }
 
   @Override
@@ -521,7 +521,7 @@ public class MoneyTransfer   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MoneyTransfer {\n");
+    sb.append("class MoneyTransferPayload {\n");
     sb.append("    moneyTransferId: ").append(toIndentedString(moneyTransferId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    direction: ").append(toIndentedString(direction)).append("\n");

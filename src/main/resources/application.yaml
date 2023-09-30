@@ -67,5 +67,5 @@ microserviceCode: CashAccountManagement
 
 
 auth:
-  auth-schema: S2S
-  api-key: FXOVVXXHVCPVPBZXIJOBGUGSKHDNFRRQJP
+  authSchema: S2S
+  apiKey: FXOVVXXHVCPVPBZXIJOBGUGSKHDNFRRQJP

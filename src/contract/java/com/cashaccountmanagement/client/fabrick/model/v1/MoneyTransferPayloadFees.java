@@ -15,11 +15,11 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * MoneyTransferFees
+ * MoneyTransferPayloadFees
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T19:46:08.386262800+02:00[Europe/Berlin]")
-public class MoneyTransferFees   {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T23:01:26.207791600+02:00[Europe/Berlin]")
+public class MoneyTransferPayloadFees   {
 
   @JsonProperty("feeCode")
   private String feeCode;
@@ -33,7 +33,7 @@ public class MoneyTransferFees   {
   @JsonProperty("currency")
   private String currency;
 
-  public MoneyTransferFees feeCode(String feeCode) {
+  public MoneyTransferPayloadFees feeCode(String feeCode) {
     this.feeCode = feeCode;
     return this;
   }
@@ -52,7 +52,7 @@ public class MoneyTransferFees   {
     this.feeCode = feeCode;
   }
 
-  public MoneyTransferFees description(String description) {
+  public MoneyTransferPayloadFees description(String description) {
     this.description = description;
     return this;
   }
@@ -71,7 +71,7 @@ public class MoneyTransferFees   {
     this.description = description;
   }
 
-  public MoneyTransferFees amount(BigDecimal amount) {
+  public MoneyTransferPayloadFees amount(BigDecimal amount) {
     this.amount = amount;
     return this;
   }
@@ -90,7 +90,7 @@ public class MoneyTransferFees   {
     this.amount = amount;
   }
 
-  public MoneyTransferFees currency(String currency) {
+  public MoneyTransferPayloadFees currency(String currency) {
     this.currency = currency;
     return this;
   }
@@ -117,11 +117,11 @@ public class MoneyTransferFees   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MoneyTransferFees moneyTransferFees = (MoneyTransferFees) o;
-    return Objects.equals(this.feeCode, moneyTransferFees.feeCode) &&
-        Objects.equals(this.description, moneyTransferFees.description) &&
-        Objects.equals(this.amount, moneyTransferFees.amount) &&
-        Objects.equals(this.currency, moneyTransferFees.currency);
+    MoneyTransferPayloadFees moneyTransferPayloadFees = (MoneyTransferPayloadFees) o;
+    return Objects.equals(this.feeCode, moneyTransferPayloadFees.feeCode) &&
+        Objects.equals(this.description, moneyTransferPayloadFees.description) &&
+        Objects.equals(this.amount, moneyTransferPayloadFees.amount) &&
+        Objects.equals(this.currency, moneyTransferPayloadFees.currency);
   }
 
   @Override
@@ -132,7 +132,7 @@ public class MoneyTransferFees   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MoneyTransferFees {\n");
+    sb.append("class MoneyTransferPayloadFees {\n");
     sb.append("    feeCode: ").append(toIndentedString(feeCode)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
