@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T23:01:25.861679400+02:00[Europe/Berlin]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-10-02T22:01:24.740625300+02:00[Europe/Berlin]")
 @Validated
 @Tag(name = "account", description = "the account API")
 public interface AccountApi {
@@ -50,7 +50,6 @@ public interface AccountApi {
     @Operation(
         operationId = "getAccount",
         summary = "get account",
-        tags = { "Account" },
         responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  AccountResource.class))),
             @ApiResponse(responseCode = "201", description = "Created"),
@@ -84,7 +83,6 @@ public interface AccountApi {
     @Operation(
         operationId = "getAccountTransactions",
         summary = "get transactions by account id",
-        tags = { "Account" },
         responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  TransactionsResource.class))),
             @ApiResponse(responseCode = "201", description = "Created"),

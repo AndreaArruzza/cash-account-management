@@ -12,8 +12,6 @@ paths:
     post:
       summary: Insert a new money transfer
       operationId: createMoneyTransfer
-      tags:
-        - Payment
       parameters:
         - name: accountId
           in: path

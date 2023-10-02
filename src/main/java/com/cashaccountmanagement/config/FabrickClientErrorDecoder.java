@@ -1,8 +1,8 @@
 package com.cashaccountmanagement.config;
 
-import com.cashaccountmanagement.exception.GenericError;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.shared.library.model.dto.GenericError;
 import com.shared.library.service.LoggingService;
 import feign.Response;
 import feign.codec.ErrorDecoder;

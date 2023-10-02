@@ -4,10 +4,7 @@ import com.cashaccountmanagement.account.model.v1.AccountResource;
 import com.cashaccountmanagement.account.model.v1.TransactionResource;
 import com.cashaccountmanagement.account.model.v1.TransactionsResource;
 import com.cashaccountmanagement.client.FabrickClient;
-import com.cashaccountmanagement.client.fabrick.model.v1.AccountPayload;
-import com.cashaccountmanagement.client.fabrick.model.v1.AccountResponse;
-import com.cashaccountmanagement.client.fabrick.model.v1.Transaction;
-import com.cashaccountmanagement.client.fabrick.model.v1.TransactionsResponse;
+import com.cashaccountmanagement.client.fabrick.model.v1.*;
 import com.cashaccountmanagement.config.properties.AuthProperties;
 import com.cashaccountmanagement.mapper.AccountMapper;
 import com.cashaccountmanagement.model.TransactionModel;
@@ -68,7 +65,7 @@ public class AccountServiceTest {
     void getAccountTransactions_OK(){
         TransactionsResponse transactionsMock = getTransactionsMock();
         when(fabrickClient.getAccountTransactions(any(),any(), any(),any(),any())).thenReturn(transactionsMock);
-        when(accountMapper.outputModelToResource(transactionsMock)).thenReturn(getTransactionsResourceMock());
+        when(accountMapper.outputModelToResource(transactionsMock.getPayload())).thenReturn(getTransactionsResourceMock());
 
         TransactionsResource transactionsResource = accountService.getAccountTransactions(getTransactionModelMock());
         assertEquals(1, transactionsResource.getTransactions().size());
@@ -109,7 +106,9 @@ public class AccountServiceTest {
         transaction.setCurrency("EUR");
         List<Transaction> payload = new ArrayList<>();
         payload.add(transaction);
-        transactions.setPayload(payload);
+        TransactionsResponsePayload transactionsResponsePayload = new TransactionsResponsePayload();
+        transactionsResponsePayload.setList(payload);
+        transactions.setPayload(transactionsResponsePayload);
         return transactions;
     }
 

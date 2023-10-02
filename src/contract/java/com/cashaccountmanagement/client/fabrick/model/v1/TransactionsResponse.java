@@ -2,7 +2,7 @@ package com.cashaccountmanagement.client.fabrick.model.v1;
 
 import java.net.URI;
 import java.util.Objects;
-import com.cashaccountmanagement.client.fabrick.model.v1.Transaction;
+import com.cashaccountmanagement.client.fabrick.model.v1.TransactionsResponsePayload;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * TransactionsResponse
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T23:01:26.207791600+02:00[Europe/Berlin]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-10-02T22:01:25.139626500+02:00[Europe/Berlin]")
 public class TransactionsResponse   {
 
   @JsonProperty("status")
@@ -31,8 +31,7 @@ public class TransactionsResponse   {
   private List<Object> error = null;
 
   @JsonProperty("payload")
-  @Valid
-  private List<Transaction> payload = null;
+  private TransactionsResponsePayload payload;
 
   public TransactionsResponse status(String status) {
     this.status = status;
@@ -80,16 +79,8 @@ public class TransactionsResponse   {
     this.error = error;
   }
 
-  public TransactionsResponse payload(List<Transaction> payload) {
+  public TransactionsResponse payload(TransactionsResponsePayload payload) {
     this.payload = payload;
-    return this;
-  }
-
-  public TransactionsResponse addPayloadItem(Transaction payloadItem) {
-    if (this.payload == null) {
-      this.payload = new ArrayList<>();
-    }
-    this.payload.add(payloadItem);
     return this;
   }
 
@@ -99,11 +90,11 @@ public class TransactionsResponse   {
   */
   @Valid 
   @Schema(name = "payload", required = false)
-  public List<Transaction> getPayload() {
+  public TransactionsResponsePayload getPayload() {
     return payload;
   }
 
-  public void setPayload(List<Transaction> payload) {
+  public void setPayload(TransactionsResponsePayload payload) {
     this.payload = payload;
   }
 

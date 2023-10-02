@@ -11,8 +11,6 @@ paths:
     get:
       summary: get account
       operationId: getAccount
-      tags:
-        - Account
       parameters:
         - name: accountId
           in: path
@@ -40,8 +38,6 @@ paths:
     get:
       summary: get transactions by account id
       operationId: getAccountTransactions
-      tags:
-        - Account
       parameters:
         - name: accountId
           in: path
@@ -121,6 +117,8 @@ components:
         currency:
           type: string
           example: 'EUR'
+
+
     TransactionsResource:
       type: object
       properties:
@@ -138,13 +136,15 @@ components:
           type: string
         accountingDate:
           type: string
+          format: date
         valueDate:
           type: string
           format: date
         type:
           $ref: '#/components/schemas/Type'
         amount:
-          type: integer
+          type: number
+          format: double
         currency:
           type: string
         description:
@@ -156,6 +156,6 @@ components:
       properties:
         enumeration:
           type: string
-        operationId:
+        value:
           type: string
 

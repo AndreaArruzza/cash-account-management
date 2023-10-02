@@ -2,21 +2,18 @@ package com.cashaccountmanagement.service;
 
 import com.cashaccountmanagement.account.model.v1.AccountResource;
 import com.cashaccountmanagement.client.FabrickClient;
-import com.cashaccountmanagement.client.fabrick.model.v1.MoneyTransferDTO;
-import com.cashaccountmanagement.client.fabrick.model.v1.MoneyTransferPayload;
-import com.cashaccountmanagement.client.fabrick.model.v1.MoneyTransferResponse;
+import com.cashaccountmanagement.client.fabrick.model.v1.*;
 import com.cashaccountmanagement.config.properties.AuthProperties;
-import com.cashaccountmanagement.exception.MoneyTransferException;
 import com.cashaccountmanagement.mapper.PaymentMapper;
 import com.cashaccountmanagement.model.MoneyTransferModel;
 import com.cashaccountmanagement.payment.model.v1.CreateMoneyTransferResource;
 import com.cashaccountmanagement.service.impl.PaymentServiceImpl;
+import com.shared.library.model.dto.MoneyTransferException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.web.server.ResponseStatusException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -48,6 +45,9 @@ public class PaymentServiceTest {
         moneyTransferModel.setAccountId(123L);
         //when(accountService.getAccount(anyString())).thenReturn(new AccountResource());
 
+        AccountResource accountInfo = new AccountResource();
+        accountInfo.setIban("11111");
+        when(accountService.getAccount(anyString())).thenReturn(accountInfo);
         when(paymentMapper.inputModelToDTOOutput(any(), any())).thenReturn(new MoneyTransferDTO());
         MoneyTransferResponse mockResponse = new MoneyTransferResponse();
         MoneyTransferPayload payload = new MoneyTransferPayload();
@@ -62,11 +62,15 @@ public class PaymentServiceTest {
 
     @Test
     public void testCreateMoneyTransfer_NotFound() {
+        AccountResource accountInfo = new AccountResource();
+        accountInfo.setIban("11111");
+        when(accountService.getAccount(anyString())).thenReturn(accountInfo);
+
         MoneyTransferModel moneyTransferModel = new MoneyTransferModel();
         moneyTransferModel.setAccountId(123L);
 
        // when(accountService.getAccount(anyString())).thenReturn(new AccountResource());
-        when(paymentMapper.inputModelToDTOOutput(eq(moneyTransferModel), any(AccountResource.class))).thenReturn(new MoneyTransferDTO());
+        when(paymentMapper.inputModelToDTOOutput( any(), any())).thenReturn(new MoneyTransferDTO());
         MoneyTransferResponse mockResponse = new MoneyTransferResponse();
         when(fabrickClient.createMoneyTransfer(any(), any(), any(), any())).thenReturn(mockResponse);
 

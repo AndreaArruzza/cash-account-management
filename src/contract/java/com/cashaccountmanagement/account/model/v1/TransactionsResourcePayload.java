@@ -17,41 +17,41 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * TransactionsResource
+ * TransactionsResourcePayload
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-10-02T22:01:24.740625300+02:00[Europe/Berlin]")
-public class TransactionsResource   {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-10-02T18:59:46.726381900+02:00[Europe/Berlin]")
+public class TransactionsResourcePayload   {
 
-  @JsonProperty("Transactions")
+  @JsonProperty("list")
   @Valid
-  private List<TransactionResource> transactions = null;
+  private List<TransactionResource> _list = null;
 
-  public TransactionsResource transactions(List<TransactionResource> transactions) {
-    this.transactions = transactions;
+  public TransactionsResourcePayload _list(List<TransactionResource> _list) {
+    this._list = _list;
     return this;
   }
 
-  public TransactionsResource addTransactionsItem(TransactionResource transactionsItem) {
-    if (this.transactions == null) {
-      this.transactions = new ArrayList<>();
+  public TransactionsResourcePayload addListItem(TransactionResource _listItem) {
+    if (this._list == null) {
+      this._list = new ArrayList<>();
     }
-    this.transactions.add(transactionsItem);
+    this._list.add(_listItem);
     return this;
   }
 
   /**
-   * Get transactions
-   * @return transactions
+   * Get _list
+   * @return _list
   */
   @Valid 
-  @Schema(name = "Transactions", required = false)
-  public List<TransactionResource> getTransactions() {
-    return transactions;
+  @Schema(name = "list", required = false)
+  public List<TransactionResource> getList() {
+    return _list;
   }
 
-  public void setTransactions(List<TransactionResource> transactions) {
-    this.transactions = transactions;
+  public void setList(List<TransactionResource> _list) {
+    this._list = _list;
   }
 
   @Override
@@ -62,20 +62,20 @@ public class TransactionsResource   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TransactionsResource transactionsResource = (TransactionsResource) o;
-    return Objects.equals(this.transactions, transactionsResource.transactions);
+    TransactionsResourcePayload transactionsResourcePayload = (TransactionsResourcePayload) o;
+    return Objects.equals(this._list, transactionsResourcePayload._list);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(transactions);
+    return Objects.hash(_list);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TransactionsResource {\n");
-    sb.append("    transactions: ").append(toIndentedString(transactions)).append("\n");
+    sb.append("class TransactionsResourcePayload {\n");
+    sb.append("    _list: ").append(toIndentedString(_list)).append("\n");
     sb.append("}");
     return sb.toString();
   }

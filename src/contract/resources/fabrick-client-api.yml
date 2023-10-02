@@ -176,11 +176,14 @@ components:
           example: OK
         error:
           type: array
-          items: { }
+          items: {}
         payload:
-          type: array
-          items:
-            $ref: '#/components/schemas/Transaction'
+          type: object
+          properties:
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/Transaction'
 
     Transaction:
       type: object
@@ -191,13 +194,15 @@ components:
           type: string
         accountingDate:
           type: string
+          format: date
         valueDate:
           type: string
           format: date
         type:
           $ref: '#/components/schemas/Type'
         amount:
-          type: integer
+          type: number
+          format: double
         currency:
           type: string
         description:
@@ -209,7 +214,7 @@ components:
       properties:
         enumeration:
           type: string
-        operationId:
+        value:
           type: string
 
 
@@ -333,7 +338,7 @@ components:
           example: OK
         error:
           type: array
-          items: { }
+          items: {}
         payload:
           $ref: '#/components/schemas/MoneyTransferPayload'
 

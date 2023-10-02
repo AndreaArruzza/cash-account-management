@@ -2,8 +2,11 @@ package com.cashaccountmanagement.client.fabrick.model.v1;
 
 import java.net.URI;
 import java.util.Objects;
+import com.cashaccountmanagement.client.fabrick.model.v1.Transaction;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import java.util.ArrayList;
+import java.util.List;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -14,54 +17,41 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * Type
+ * TransactionsResponsePayload
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-10-02T22:01:25.139626500+02:00[Europe/Berlin]")
-public class Type   {
+public class TransactionsResponsePayload   {
 
-  @JsonProperty("enumeration")
-  private String enumeration;
+  @JsonProperty("list")
+  @Valid
+  private List<Transaction> _list = null;
 
-  @JsonProperty("value")
-  private String value;
+  public TransactionsResponsePayload _list(List<Transaction> _list) {
+    this._list = _list;
+    return this;
+  }
 
-  public Type enumeration(String enumeration) {
-    this.enumeration = enumeration;
+  public TransactionsResponsePayload addListItem(Transaction _listItem) {
+    if (this._list == null) {
+      this._list = new ArrayList<>();
+    }
+    this._list.add(_listItem);
     return this;
   }
 
   /**
-   * Get enumeration
-   * @return enumeration
+   * Get _list
+   * @return _list
   */
-  
-  @Schema(name = "enumeration", required = false)
-  public String getEnumeration() {
-    return enumeration;
+  @Valid 
+  @Schema(name = "list", required = false)
+  public List<Transaction> getList() {
+    return _list;
   }
 
-  public void setEnumeration(String enumeration) {
-    this.enumeration = enumeration;
-  }
-
-  public Type value(String value) {
-    this.value = value;
-    return this;
-  }
-
-  /**
-   * Get value
-   * @return value
-  */
-  
-  @Schema(name = "value", required = false)
-  public String getValue() {
-    return value;
-  }
-
-  public void setValue(String value) {
-    this.value = value;
+  public void setList(List<Transaction> _list) {
+    this._list = _list;
   }
 
   @Override
@@ -72,22 +62,20 @@ public class Type   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Type type = (Type) o;
-    return Objects.equals(this.enumeration, type.enumeration) &&
-        Objects.equals(this.value, type.value);
+    TransactionsResponsePayload transactionsResponsePayload = (TransactionsResponsePayload) o;
+    return Objects.equals(this._list, transactionsResponsePayload._list);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(enumeration, value);
+    return Objects.hash(_list);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Type {\n");
-    sb.append("    enumeration: ").append(toIndentedString(enumeration)).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("class TransactionsResponsePayload {\n");
+    sb.append("    _list: ").append(toIndentedString(_list)).append("\n");
     sb.append("}");
     return sb.toString();
   }

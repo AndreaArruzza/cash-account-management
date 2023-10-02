@@ -17,14 +17,14 @@ import javax.annotation.Generated;
  * Type
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T23:01:25.861679400+02:00[Europe/Berlin]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-10-02T22:01:24.740625300+02:00[Europe/Berlin]")
 public class Type   {
 
   @JsonProperty("enumeration")
   private String enumeration;
 
-  @JsonProperty("operationId")
-  private String operationId;
+  @JsonProperty("value")
+  private String value;
 
   public Type enumeration(String enumeration) {
     this.enumeration = enumeration;
@@ -45,23 +45,23 @@ public class Type   {
     this.enumeration = enumeration;
   }
 
-  public Type operationId(String operationId) {
-    this.operationId = operationId;
+  public Type value(String value) {
+    this.value = value;
     return this;
   }
 
   /**
-   * Get operationId
-   * @return operationId
+   * Get value
+   * @return value
   */
   
-  @Schema(name = "operationId", required = false)
-  public String getOperationId() {
-    return operationId;
+  @Schema(name = "value", required = false)
+  public String getValue() {
+    return value;
   }
 
-  public void setOperationId(String operationId) {
-    this.operationId = operationId;
+  public void setValue(String value) {
+    this.value = value;
   }
 
   @Override
@@ -74,12 +74,12 @@ public class Type   {
     }
     Type type = (Type) o;
     return Objects.equals(this.enumeration, type.enumeration) &&
-        Objects.equals(this.operationId, type.operationId);
+        Objects.equals(this.value, type.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(enumeration, operationId);
+    return Objects.hash(enumeration, value);
   }
 
   @Override
@@ -87,7 +87,7 @@ public class Type   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Type {\n");
     sb.append("    enumeration: ").append(toIndentedString(enumeration)).append("\n");
-    sb.append("    operationId: ").append(toIndentedString(operationId)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

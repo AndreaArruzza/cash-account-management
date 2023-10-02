@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * TransactionResource
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-30T23:01:25.861679400+02:00[Europe/Berlin]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-10-02T22:01:24.740625300+02:00[Europe/Berlin]")
 public class TransactionResource   {
 
   @JsonProperty("transactionId")
@@ -30,7 +30,8 @@ public class TransactionResource   {
   private String operationId;
 
   @JsonProperty("accountingDate")
-  private String accountingDate;
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+  private LocalDate accountingDate;
 
   @JsonProperty("valueDate")
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -40,7 +41,7 @@ public class TransactionResource   {
   private Type type;
 
   @JsonProperty("amount")
-  private Integer amount;
+  private Double amount;
 
   @JsonProperty("currency")
   private String currency;
@@ -86,7 +87,7 @@ public class TransactionResource   {
     this.operationId = operationId;
   }
 
-  public TransactionResource accountingDate(String accountingDate) {
+  public TransactionResource accountingDate(LocalDate accountingDate) {
     this.accountingDate = accountingDate;
     return this;
   }
@@ -95,13 +96,13 @@ public class TransactionResource   {
    * Get accountingDate
    * @return accountingDate
   */
-  
+  @Valid 
   @Schema(name = "accountingDate", required = false)
-  public String getAccountingDate() {
+  public LocalDate getAccountingDate() {
     return accountingDate;
   }
 
-  public void setAccountingDate(String accountingDate) {
+  public void setAccountingDate(LocalDate accountingDate) {
     this.accountingDate = accountingDate;
   }
 
@@ -143,7 +144,7 @@ public class TransactionResource   {
     this.type = type;
   }
 
-  public TransactionResource amount(Integer amount) {
+  public TransactionResource amount(Double amount) {
     this.amount = amount;
     return this;
   }
@@ -154,11 +155,11 @@ public class TransactionResource   {
   */
   
   @Schema(name = "amount", required = false)
-  public Integer getAmount() {
+  public Double getAmount() {
     return amount;
   }
 
-  public void setAmount(Integer amount) {
+  public void setAmount(Double amount) {
     this.amount = amount;
   }
 
