@@ -11,36 +11,39 @@ import java.time.LocalDate;
 public class Transaction {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_transaction" )
+    @SequenceGenerator(
+            name = "seq_transaction",
+            allocationSize = 1
+    )
     @Column(name = "id",  nullable = false)
     private Long id;
 
-    @Column(name ="operation_id")
+    @Column(name ="operation_id",  nullable = false, unique=true)
     private String operationId;
 
-    @Column(name ="accounting_date")
+    @Column(name ="accounting_date",  nullable = false)
     private LocalDate accountingDate;
 
-    @Column(name ="value_date")
+    @Column(name ="value_date",  nullable = false)
     private LocalDate valueDate;
 
-    @Column(name ="amount")
+    @Column(name ="amount",  nullable = false)
     private Double amount;
 
-    @Column(name ="currency")
+    @Column(name ="currency",  nullable = false)
     private String currency;
 
-    @Column(name ="description")
+    @Column(name ="description",  nullable = false)
     private String description;
 
-    @Column(name ="type_enumeration")
+    @Column(name ="type_enumeration",  nullable = false)
     private String typeEnumeration;
 
-
-    @Column(name ="type_value")
+    @Column(name ="type_value",  nullable = false)
     private String typeValue;
 
     @ManyToOne
-    @JoinColumn(name = "account_id")
+    @JoinColumn(name = "account_id",  nullable = false)
     private Account account;
 }

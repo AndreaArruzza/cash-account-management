@@ -2,14 +2,12 @@ package com.cashaccountmanagement.service.impl;
 
 import com.cashaccountmanagement.account.model.v1.AccountResource;
 import com.cashaccountmanagement.client.FabrickClient;
-import com.cashaccountmanagement.client.fabrick.model.v1.AccountResponse;
 import com.cashaccountmanagement.client.fabrick.model.v1.MoneyTransferDTO;
 import com.cashaccountmanagement.client.fabrick.model.v1.MoneyTransferResponse;
 import com.cashaccountmanagement.config.properties.AuthProperties;
 import com.cashaccountmanagement.mapper.PaymentMapper;
 import com.cashaccountmanagement.model.MoneyTransferModel;
 import com.cashaccountmanagement.payment.model.v1.CreateMoneyTransferResource;
-import com.cashaccountmanagement.repository.TransactionRepository;
 import com.cashaccountmanagement.service.AccountService;
 import com.cashaccountmanagement.service.PaymentService;
 import com.shared.library.model.dto.MoneyTransferException;
@@ -51,7 +49,7 @@ public class PaymentServiceImpl implements PaymentService {
          }
         if(ObjectUtils.isEmpty(moneyTransfer) || ObjectUtils.isEmpty(moneyTransfer.getPayload())){
             logger.error("money transfer not found with input {}", moneyTransferModel.getAccountId());
-            throw new MoneyTransferException(HttpStatus.NOT_FOUND.toString(), "money transfer not found with input with input => ".concat(String.valueOf(moneyTransferModel.getAccountId())));
+            throw new MoneyTransferException(HttpStatus.NOT_FOUND.toString(), "money transfer not found with input  => ".concat(String.valueOf(moneyTransferModel.getAccountId())));
         }
         createMoneyTransferResource.setStatus(moneyTransfer.getPayload().getStatus());
         return createMoneyTransferResource;

@@ -8,6 +8,7 @@ import com.cashaccountmanagement.client.fabrick.model.v1.*;
 import com.cashaccountmanagement.config.properties.AuthProperties;
 import com.cashaccountmanagement.mapper.AccountMapper;
 import com.cashaccountmanagement.model.TransactionModel;
+import com.cashaccountmanagement.repository.TransactionRepository;
 import com.cashaccountmanagement.service.impl.AccountServiceImpl;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
@@ -43,6 +44,9 @@ public class AccountServiceTest {
     @Mock
     private AuthProperties authProperties;
 
+    @Mock
+    private TransactionRepository transactionRepository;
+
     @Test
     void getAccount_OK(){
         AccountResponse account = getAccountMock();
@@ -66,6 +70,17 @@ public class AccountServiceTest {
         TransactionsResponse transactionsMock = getTransactionsMock();
         when(fabrickClient.getAccountTransactions(any(),any(), any(),any(),any())).thenReturn(transactionsMock);
         when(accountMapper.outputModelToResource(transactionsMock.getPayload())).thenReturn(getTransactionsResourceMock());
+
+        AccountResponse account = getAccountMock();
+        when(fabrickClient.getAccount(anyString(),any(),any())).thenReturn(account);
+        when(accountMapper.outputModelToResource(account.getPayload())).thenReturn(getAccountResourceMock());
+
+        List<com.cashaccountmanagement.entity.Transaction> entities = new ArrayList<>();
+        com.cashaccountmanagement.entity.Transaction entity = new com.cashaccountmanagement.entity.Transaction();
+        entity.setId(111L);
+        entity.setAmount(6000.00);
+        entities.add(entity);
+        when(accountMapper.outputModelToEntity(any(), any())).thenReturn(entities);
 
         TransactionsResource transactionsResource = accountService.getAccountTransactions(getTransactionModelMock());
         assertEquals(1, transactionsResource.getTransactions().size());

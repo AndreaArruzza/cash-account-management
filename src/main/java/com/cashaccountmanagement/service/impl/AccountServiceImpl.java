@@ -72,7 +72,7 @@ public class AccountServiceImpl implements AccountService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"no transaction found");
         }
 
-       // insertTransactionsToDB(transactionModel, accountTransactions);
+        insertTransactionsToDB(transactionModel, accountTransactions);
         logger.info("end get getAccountTransactions  ===> {}ms with response ====> {}", System.currentTimeMillis() - start, accountTransactions);
         return accountMapper.outputModelToResource(accountTransactions.getPayload());
     }
