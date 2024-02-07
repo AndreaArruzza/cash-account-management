@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>com</groupId>
+	<groupId>com.cash</groupId>
 	<artifactId>cash-account-management</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>cash-account-management</name>
@@ -21,29 +21,16 @@
 		<org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
 		<org.mapstruct.binding.version>0.2.0</org.mapstruct.binding.version>
 		<org.lombok.version>1.18.24</org.lombok.version>
-		<shared.version>0.0.2</shared.version>
-		<start-class>com.cashaccountmanagement.Application</start-class>
-		<spring-cloud.version>2021.0.1</spring-cloud.version>
+		<shared.global.version>0.0.2</shared.global.version>
+		<start-class>com.cash.cashaccountmanagement.Application</start-class>
 	</properties>
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 	<dependencies>
 
 		<dependency>
 			<groupId>com</groupId>
 			<artifactId>shared-library</artifactId>
-			<version>${shared.version}</version>
+			<version>${shared.global.version}</version>
 		</dependency>
 
 		<dependency>
@@ -61,10 +48,10 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-	<!--	<dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-oauth2-client</artifactId>
-		</dependency>-->
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -100,12 +87,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.openapitools</groupId>
-			<artifactId>jackson-databind-nullable</artifactId>
-			<version>0.2.3</version>
-		</dependency>
-
-		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 		</dependency>
@@ -127,23 +108,7 @@
 			<artifactId>postgresql</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>io.github.openfeign</groupId>
-			<artifactId>feign-okhttp</artifactId>
-			<version>10.11</version>
-		</dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-    </dependencies>
+	</dependencies>
 
 	<build>
 		<finalName>${jar.name}</finalName>
@@ -179,7 +144,6 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
@@ -247,7 +211,7 @@
 									</inputSpec>
 									<apiPackage>com.cashaccountmanagement.account.api.v1</apiPackage>
 									<modelPackage>com.cashaccountmanagement.account.model.v1</modelPackage>
-									<packageName>com.cashaccountmanagement.account</packageName>
+									<packageName>com.cashaccountmanagement.account.</packageName>
 									<generateApiDocumentation>false</generateApiDocumentation>
 									<generateModelDocumentation>false</generateModelDocumentation>
 									<output>${project.basedir}</output>
@@ -298,7 +262,7 @@
 								</configuration>
 							</execution>
 							<execution>
-								<id>fabrick client api</id>
+								<id>fabrick-client-api</id>
 								<goals>
 									<goal>generate</goal>
 								</goals>
@@ -311,7 +275,7 @@
 									</inputSpec>
 									<apiPackage>com.cashaccountmanagement.client.fabrick.api.v1</apiPackage>
 									<modelPackage>com.cashaccountmanagement.client.fabrick.model.v1</modelPackage>
-									<packageName>com.cashaccountmanagement.client.fabrick.client</packageName>
+									<packageName>com.cashaccountmanagement.client.fabrick</packageName>
 									<generateApiDocumentation>false</generateApiDocumentation>
 									<generateModelDocumentation>false</generateModelDocumentation>
 									<output>${project.basedir}</output>

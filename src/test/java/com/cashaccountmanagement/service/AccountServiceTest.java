@@ -10,7 +10,6 @@ import com.cashaccountmanagement.mapper.AccountMapper;
 import com.cashaccountmanagement.model.TransactionModel;
 import com.cashaccountmanagement.repository.TransactionRepository;
 import com.cashaccountmanagement.service.impl.AccountServiceImpl;
-import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,6 +17,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

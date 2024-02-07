@@ -2,12 +2,12 @@ package com.cashaccountmanagement.mapper;
 
 import com.cashaccountmanagement.account.model.v1.AccountResource;
 import com.cashaccountmanagement.client.fabrick.model.v1.AccountMoneyTransfer;
-import com.cashaccountmanagement.client.fabrick.model.v1.AccountPayload;
 import com.cashaccountmanagement.client.fabrick.model.v1.Creditor;
 import com.cashaccountmanagement.model.MoneyTransferModel;
 import com.cashaccountmanagement.payment.model.v1.MoneyTransferDTO;
-import org.jetbrains.annotations.NotNull;
 import org.mapstruct.Mapper;
+
+import javax.validation.constraints.NotNull;
 
 @Mapper(componentModel =  "spring")
 public interface PaymentMapper {
