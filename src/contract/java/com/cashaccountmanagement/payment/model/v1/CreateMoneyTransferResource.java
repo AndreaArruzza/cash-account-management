@@ -17,7 +17,7 @@ import javax.annotation.Generated;
  * CreateMoneyTransferResource
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-01-29T08:33:57.602773200+01:00[Europe/Berlin]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-02-07T18:42:14.485850600+01:00[Europe/Berlin]")
 public class CreateMoneyTransferResource   {
 
   @JsonProperty("status")
